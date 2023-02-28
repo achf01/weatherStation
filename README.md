@@ -26,7 +26,8 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 ```
 
 ###### LCD Display
-###### RGB LED 
+###### RGB LED WS2812
+
 ##### Software Requirements
 #### How to start
 ### Other Material
