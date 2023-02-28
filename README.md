@@ -3,7 +3,7 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 
 
 ### Hardware Requirements
-##### Materials
+
 ##### Connections
 ###### Stepper Motors
 ###### LCD Display
