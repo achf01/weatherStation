@@ -26,7 +26,10 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 ```
 
 ###### LCD Display
+
 ###### RGB LED WS2812
+All the configuration of the led can be found in the folder src in a custom library called "ledcrl.h". There, we defined a function to setup the led and one to choose the right color according with the daytime. We realized that function by defining a matrix with a predefined number of (r,g,b) values, based on the time (both hours and minutes are required), the right color is selected and displayed by the led. 
+It is possbile to change the pin configuration chosen by default, but it is important to connect one pin with the ground, one with Vin and one with a MOSI pin (deafult 12)
 
 ##### Software Requirements
 #### How to start
