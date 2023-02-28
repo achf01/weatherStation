@@ -12,10 +12,17 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 * a structure to hold everything toghether
 
 ###### Stepper Motors
+
 ```
-var add2 = function(number) {
-  return number + 2;
-}
+#define IN1 19
+#define IN2 18
+#define IN3 5
+#define IN4 17
+
+#define IN5 25
+#define IN6 26
+#define IN7 27
+#define IN8 14
 ```
 
 ###### LCD Display
