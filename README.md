@@ -6,12 +6,18 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 * 2 ESP32 Wi-Fi & Bluetooth MCU
 * RGB LED
 * LCD Display
-* 2 Stepper Motor + ULN2003 Motor Driver
-* 2 large gear wheels (one engraved and one carved)
+* 2 28BYJ-48 Stepper Motor  + ULN2003 Motor Driver
+* 2 large gear wheels with weather drawings (?)
 * 2 smaller gears to transmit the rotation
 * a structure to hold everything toghether
 
 ###### Stepper Motors
+```
+var add2 = function(number) {
+  return number + 2;
+}
+```
+
 ###### LCD Display
 ###### RGB LED 
 ##### Software Requirements
