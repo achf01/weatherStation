@@ -12,18 +12,8 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 * a structure to hold everything toghether
 
 ###### Stepper Motors
+To control the stepper motors we used an Arduino built-in library called "Stepper.h", that provides easy funztions to move the motor by a defined number of steps.  The 28BYJ-48 Stepper Motor has a stride angle of 5.625°, so it needs 682 steps to rotate of 120°. But in our case, the motion isn't directly transmitted to the main wheel, but through a smaller gear. This means that to get a rotation of 120° it is necessary to use the gear ratio ![image](https://user-images.githubusercontent.com/109226936/222115208-6f9ccdab-a592-4255-a260-2a807e2f0854.png)
 
-```
-#define IN1 19
-#define IN2 18
-#define IN3 5
-#define IN4 17
-
-#define IN5 25
-#define IN6 26
-#define IN7 27
-#define IN8 14
-```
 
 ###### LCD Display
 
