@@ -3,7 +3,7 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 
 
 ### Requirements
-* 2 ESP32 Wi-Fi & Bluetooth MCU
+* 2 ESP32 Wi-Fi & Bluetooth MCU (DOIT-V1-DEVKIT)
 * RGB LED
 * LCD Display
 * 2 28BYJ-48 Stepper Motor  + ULN2003 Motor Driver
@@ -24,7 +24,21 @@ To interface ESP32 with the stepper motor, we use the ULN2003 motor driver that 
 All the configuration of the led can be found in the folder src in a custom library called "ledcrl.h". There, we defined a function to setup the led and one to choose the right color according with the daytime. We realized that function by defining a matrix with a predefined number of (r,g,b) values, based on the time (both hours and minutes are required), the right color is selected and displayed by the led. 
 It is possbile to change the pin configuration chosen by default, but it is important to connect one pin with the ground, one with Vin and one with a MOSI pin (deafult 12)
 
-##### Software Requirements
+###### Physical structure
+
+
+##### Software Requirements (DA CONTROLLARE)
+To devolop the project we have decided to use Platform.IO, an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
+Since we used many external libraries, it is possible to install it thanks to the Platform.IO manager using the following commands in the platform control cli 
+```console
+pio pkg install --library "fastled/FastLED@^3.5.0"
+pio pkg install --library "arduino-libraries/Stepper@^1.1.3"
+pio pkg install --library "bblanchon/ArduinoJson@^6.20.1" 
+```
+In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen reequires many pins and memory to work properly. 
+
+
+
 #### How to start
 ### Other Material
 ### Acknoledgment
