@@ -25,7 +25,7 @@ All the configuration of the led can be found in the folder src in a custom libr
 It is possbile to change the pin configuration chosen by default, but it is important to connect one pin with the ground, one with Vin and one with a MOSI pin (deafult 12)
 
 ###### Physical structure
-
+In the folder svg_files you can find all the models of the structure we created for our project. To make our structure and disks we used a laser cutting machine in FabLab, which is a workshop situaded in the University of Trento that offers digital fabrication tools 
 
 ##### Software Requirements (DA CONTROLLARE)
 To devolop the project we have decided to use Platform.IO, an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
