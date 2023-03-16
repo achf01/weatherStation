@@ -5,7 +5,7 @@ The WeatherStation machine is designed to display todays weather by retrieving i
 ### Requirements
 * 2 ESP32 Wi-Fi & Bluetooth MCU (DOIT-V1-DEVKIT)
 * RGB LED
-* LCD Display
+* ILI9341 TFT LCD Display
 * 2 28BYJ-48 Stepper Motor  + ULN2003 Motor Driver
 * 2 large gear wheels with weather drawings (?)
 * 2 smaller gears to transmit the rotation
@@ -19,6 +19,8 @@ To control the stepper motors we used an Arduino built-in library called "Steppe
 To interface ESP32 with the stepper motor, we use the ULN2003 motor driver that presents a connector to attach the motor, four input pins that are connected to 4 General Purpose I/O pins of the board, and two power supply pins connected to the Vin and GND pins of the ESP32. This needs to be done for each stepper motor.
 
 ###### LCD Display
+To use the display we used an Arduino built-in library called "TFT_eSPI.h", which provide functions to draw and write on the display, with the possibility to set the color. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
+The display communicate with the ESP32 trough SPI protocol, 5 input pins are connected to 5 General Purpose I/O pins on the board, and three power supply pins connected to the Vin, 3v3 and GND of the ESP32. 
 
 ###### RGB LED WS2812
 All the configuration of the led can be found in the folder src in a custom library called "ledcrl.h". There, we defined a function to setup the led and one to choose the right color according with the daytime. We realized that function by defining a matrix with a predefined number of (r,g,b) values, based on the time (both hours and minutes are required), the right color is selected and displayed by the led. 
