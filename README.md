@@ -19,8 +19,8 @@ To control the stepper motors we used an Arduino built-in library called "Steppe
 To interface ESP32 with the stepper motor, we use the ULN2003 motor driver that presents a connector to attach the motor, four input pins that are connected to 4 General Purpose I/O pins of the board, and two power supply pins connected to the Vin and GND pins of the ESP32. This needs to be done for each stepper motor.
 
 ###### LCD Display
-To use the display we used an Arduino built-in library called "TFT_eSPI.h", which provide functions to draw and write on the display, with the possibility to set the color. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
-The display communicate with the ESP32 trough SPI protocol, 5 input pins are connected to 5 General Purpose I/O pins on the board, and three power supply pins connected to the Vin, 3v3 and GND of the ESP32. 
+To use the display we used an Arduino built-in library called "TFT_eSPI.h", which provide functions to draw and write on the display, with the possibility to set the colors. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
+The display communicate with the ESP32 through SPI protocol, 5 input pins are connected to 5 General Purpose I/O pins on the board, and three power supply pins connected to the Vin, 3v3 and GND of the ESP32. 
 
 ###### RGB LED WS2812
 All the configuration of the led can be found in the folder src in a custom library called "ledcrl.h". There, we defined a function to setup the led and one to choose the right color according with the daytime. We realized that function by defining a matrix with a predefined number of (r,g,b) values, based on the time (both hours and minutes are required), the right color is selected and displayed by the led. 
@@ -31,13 +31,23 @@ In the folder svg_files you can find all the models of the structure we created 
 
 ##### Software Requirements (DA CONTROLLARE)
 To devolop the project we have decided to use Platform.IO, an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
+In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen reequires many pins and memory to work properly. 
 Since we used many external libraries, it is possible to install it thanks to the Platform.IO manager using the following commands in the platform control cli 
+
+Weather station
 ```console
 pio pkg install --library "fastled/FastLED@^3.5.0"
 pio pkg install --library "arduino-libraries/Stepper@^1.1.3"
 pio pkg install --library "bblanchon/ArduinoJson@^6.20.1" 
+pio pkg install --library "knolleary/PubSubClient@^2.8"
 ```
-In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen reequires many pins and memory to work properly. 
+
+Display controller
+```console
+pio pkg install --library "bodmer/TFT_eSPI@^2.5.2"
+pio pkg install --library "knolleary/PubSubClient@^2.8"
+pio pkg install --library "bblanchon/ArduinoJson@^6.20.1" 
+```
 
 
 
