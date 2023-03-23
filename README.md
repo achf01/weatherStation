@@ -58,7 +58,7 @@ pio pkg install --library "bblanchon/ArduinoJson@^6.20.1"
 
 #### Display controller
 ##### Pin setup
-First to make sure that the display works, make sure to set up the pins properly by:
+First to make sure that the display works set up the pins properly by:
 1) Display_Controller -> .pio -> libdeps -> TFT_eSPI -> User_Setup.h
 2) Uncomment (if commented) "#define ILI9341_DRIVER" and comment all the others drivers setup
 3) Uncomment (if commented) and set the lines
@@ -67,7 +67,7 @@ First to make sure that the display works, make sure to set up the pins properly
 
 ##### MQTT 
 For receiving and sending information (respectively from PC and to the other ESP32) we decided to use a MQTT broker. In particular we decided to use [HiveMQ MQTT broker](https://www.hivemq.com/public-mqtt-broker/), however it should work even using others MQTT brokers.
-Remember to set up the following macros in the "MQTT.h" file
+Remember to set up the following macros in the "MQTT.h" file:
 1) ```TOPIC_CITY``` name of the topic in the MQTT broker where you receive the city name from PC
 4) ```TOPIC_HOUR``` name of the topic in the MQTT broker where you send the actual time to the other ESP32
 5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
@@ -75,7 +75,7 @@ Remember to set up the following macros in the "MQTT.h" file
 
 ##### Weather API 
 
-Remember to set up the following macros in the "api.h" file
+Remember to set up the following macros in the "api.h" file:
 1) ```MYSSID``` WiFi name
 2) ```PASS_WIFI``` WiFi password
 3) ```CONST_DELAY_API``` time to pass between a request sending and another without receiving new inputs (by default 30 minutes)
