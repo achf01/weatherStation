@@ -19,7 +19,7 @@ To control the stepper motors we used an Arduino built-in library called "Steppe
 To interface ESP32 with the stepper motor, we use the ULN2003 motor driver that presents a connector to attach the motor, four input pins that are connected to 4 General Purpose I/O pins of the board, and two power supply pins connected to the Vin and GND pins of the ESP32. This needs to be done for each stepper motor.
 
 ###### LCD Display
-To use the display we used an Arduino built-in library called "TFT_eSPI.h", which provide functions to draw and write on the display, with the possibility to set the colors. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
+To use the display we used an Arduino built-in library called ["TFT_eSPI.h"](https://github.com/Bodmer/TFT_eSPI), which provide functions to draw and write on the display, with the possibility to set the colors. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
 The display communicate with the ESP32 through SPI protocol, 5 input pins are connected to 5 General Purpose I/O pins on the board, and three power supply pins connected to the Vin, 3v3 and GND of the ESP32. 
 
 ###### RGB LED WS2812
@@ -30,8 +30,9 @@ It is possbile to change the pin configuration chosen by default, but it is impo
 In the folder svg_files you can find all the models of the structure we created for our project. To make our structure and disks we used a laser cutting machine in FabLab, which is a workshop situaded in the University of Trento that offers digital fabrication tools 
 
 ##### Software Requirements (DA CONTROLLARE)
-To devolop the project we have decided to use Platform.IO, an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
+To devolop the project we have decided to use [Platform.IO](https://platformio.org/), an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
 In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen reequires many pins and memory to work properly. 
+To handle information exchange between the two ESP32 and the PC, we choose to use MQTT protocol, for sending information from PC to ESP32 (and to monitor that messages are exchanging correctly) we used the [MQTTX interface](https://mqttx.app/docs/downloading-and-installation).
 Since we used many external libraries, it is possible to install it thanks to the Platform.IO manager using the following commands in the platform control cli 
 
 Weather station
@@ -51,7 +52,36 @@ pio pkg install --library "bblanchon/ArduinoJson@^6.20.1"
 
 
 
-#### How to start
+### How to start
+#### Weather station
+
+
+#### Display controller
+##### Pin setup
+First to make sure that the display works, make sure to set up the pins properly by:
+1) Display_Controller -> .pio -> libdeps -> TFT_eSPI -> User_Setup.h
+2) Uncomment (if commented) "#define ILI9341_DRIVER" and comment all the others drivers setup
+3) Uncomment (if commented) and set the lines
+
+![Immagine 2023-03-23 115922](https://user-images.githubusercontent.com/75731638/227183194-501f8798-0ddf-4aa6-aaa1-cc056f9ecbb1.png)
+
+##### MQTT 
+For receiving and sending information (respectively from PC and to the other ESP32) we decided to use a MQTT broker. In particular we decided to use [HiveMQ MQTT broker](https://www.hivemq.com/public-mqtt-broker/), however it should work even using others MQTT brokers.
+Remember to set up the following macros in the "MQTT.h" file
+1) ```TOPIC_CITY``` name of the topic in the MQTT broker where you receive the city name from PC
+4) ```TOPIC_HOUR``` name of the topic in the MQTT broker where you send the actual time to the other ESP32
+5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
+6) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose) 
+
+##### Weather API 
+
+Remember to set up the following macros in the "api.h" file
+1) ```MYSSID``` WiFi name
+2) ```PASS_WIFI``` WiFi password
+3) ```CONST_DELAY_API``` time to pass between a request sending and another without receiving new inputs (by default 30 minutes)
+
 ### Other Material
+
+
 ### Acknoledgment
 ### Copyright
