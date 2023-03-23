@@ -73,6 +73,9 @@ Remember to set up the following macros in the "MQTT.h" file:
 5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
 6) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose) 
 
+It's the handler of MQTT message, every time a message in the topic ```TOPIC_CITY``` is published, the ```callback``` function will save the message (containing the city name) and send a new HTPP request, asking for data about the city's weather.
+![Immagine 2023-03-23 125840](https://user-images.githubusercontent.com/75731638/227197372-7ea91064-3cd2-4296-a078-53e00da6a8e6.png)
+
 ##### Weather API 
 
 Remember to set up the following macros in the "api.h" file:
