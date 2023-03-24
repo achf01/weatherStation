@@ -72,12 +72,72 @@ Remember to set up the following macros in the "MQTT.h" file:
 4) ```TOPIC_HOUR``` name of the topic in the MQTT broker where you send the actual time to the other ESP32
 5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
 6) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose) 
+7) ```CLIENT``` name of the connection on MQTTX
+
+Now you have to set up the broker trough MQTTX. Open the desktop app, go to the first section in the slidebar on the left and click the botton "+"
+
+![Immagine 2023-03-24 133434](https://user-images.githubusercontent.com/75731638/227524838-fa3c780b-db48-4935-8f97-171c8c18c775.png)
+
+Now click on "New Connection" and give a name to your connection and change the second field of the voice "Host" with "broker.hivemq.com" (or the name of yout broker, it must be the same used for ```SERVER```)
+
+![Immagine 2023-03-24 133434](https://user-images.githubusercontent.com/75731638/227526526-7ac3d743-ff2a-4ac1-8745-b8938a543c6c.png)
+
+Then click on the newly created connection and next on the green button "Connect" to open the connection with the broker.
+Now click the green button "+ New Subscription" to create a new topic, and choose the name of the topic. 
+BE CAREFUL! The topics will be public so everyone can access to it (and publish on or subscribe to some topics), to avoid this problem make sure to give an uncommon and/or complex name. 
+Now you can send message to every device (connection) subscribed to a topic, by writing in the white area under the name of the topic you're writing in and clicking the green arrow on the right. 
+
+Initialize the communication with the MQTT broker
+
+```c++
+void MQTT_inizialization()
+{
+    Serial.println("MQTT inizialing");
+    client.setServer(SERVER, 1883);
+    client.setCallback(callback);
+}
+```
+
+Try to connect to the client (connection), if it succeed it subscribe to ```TOPIC_CITY``` and return true, elsewhere return false
+
+```c++
+boolean reconnect()
+{
+    if (client.connect(CLIENT))
+    {
+        Serial.println("connected to client");
+        // ... and resubscribe
+        client.subscribe(TOPIC_CITY);
+    }
+    return client.connected();
+}
+```
 
 It's the handler of MQTT message, every time a message in the topic ```TOPIC_CITY``` is published, the ```callback``` function will save the message (containing the city name) and send a new HTPP request, asking for data about the city's weather.
 
-![Immagine 2023-03-23 125840](https://user-images.githubusercontent.com/75731638/227197372-7ea91064-3cd2-4296-a078-53e00da6a8e6.png)
+```c++
+void callback(char *topic, byte *payload, unsigned int length)
+{
+    Serial.println("MQTT message received");
+    if (strcmp(topic, TOPIC_CITY) == 0)
+    {
+        char string[length + 1];
+        // handle message arrived
+        for (int i = 0; i < length; i++)
+        {
+            // convert the payload from byte to char and save it as a string
+            string[i] = (char)payload[i];
+        }
+        string[length] = '\0';
+        setCity(string);   // set city name 
+        setReqBool(true);  // send a new request
+    }
+}
+```
 
 ##### Weather API 
+
+// Annina divertiti
 
 Remember to set up the following macros in the "api.h" file:
 1) ```MYSSID``` WiFi name
