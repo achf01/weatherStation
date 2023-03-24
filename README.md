@@ -78,12 +78,12 @@ Now you have to set up the broker trough MQTTX. Open the desktop app, go to the 
 
 ![Immagine 2023-03-24 133434](https://user-images.githubusercontent.com/75731638/227524838-fa3c780b-db48-4935-8f97-171c8c18c775.png)
 
-Now click on "New Connection" and give a name to your connection and change the second field of the voice "Host" with "broker.hivemq.com" (or the name of yout broker, it must be the same used for ```SERVER```)
+Now click on "New Connection" and give a name to your connection and change the second field of the voice "Host" with "broker.hivemq.com" (or the name of yout broker, it must be the same used for ```SERVER```).
+Then click on the newly created connection and next on the green button "Connect" to open the connection with the broker.
 
 ![Immagine 2023-03-24 133434](https://user-images.githubusercontent.com/75731638/227526526-7ac3d743-ff2a-4ac1-8745-b8938a543c6c.png)
 
-Then click on the newly created connection and next on the green button "Connect" to open the connection with the broker.
-Now click the green button "+ New Subscription" to create a new topic, and choose the name of the topic. 
+After that click the green button "+ New Subscription" to create a new topic, and choose the name of the topic. 
 BE CAREFUL! The topics will be public so everyone can access to it (and publish on or subscribe to some topics), to avoid this problem make sure to give an uncommon and/or complex name. 
 Now you can send message to every device (connection) subscribed to a topic, by writing in the white area under the name of the topic you're writing in and clicking the green arrow on the right. 
 
