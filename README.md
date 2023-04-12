@@ -155,7 +155,8 @@ The request to the api are performed by this part of the function "make_request(
         Serial.println("request made");
         while(!client.available()){
       //Serial.println("Waiting for client");
-    }```
+    }
+```
 
 Is is important to consider that the data requested are given in the response of the HTTP request. For this reason the headers are skipped, the data are saved in a "DinamicJsonDocument" and then deserialized in order to return only the relevant information.
 The data received will be displayed on the LCD screen and also sent thanks to the MQTT server to the other ESP32 in order to move the wheels according to them.
