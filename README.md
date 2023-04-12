@@ -173,6 +173,3 @@ Kasim Sinan Yildirim](https://webapps.unitn.it/du/it/Persona/PER0212812/Didattic
 
 
 <img src="https://user-images.githubusercontent.com/101217680/231458391-f247b1ba-2c5b-474d-ad5f-a40939d57d3d.png" width=30% height=30%>
-
-
-### Copyright
