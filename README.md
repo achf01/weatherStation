@@ -147,7 +147,8 @@ Remember to set up the following macros in the "api.h" file:
 3) ```CONST_DELAY_API``` time to pass between a request sending and another without receiving new inputs (by default 30 minutes)
 
 The request to the api are performed by this part of the function "make_request()", that can be found in the library "api.h". These requests are done creating a proper GET HTTP request to the web server of the API.
-```if(client.connected()){
+```
+if(client.connected()){
         client.println("GET " PATH "?key=" APIKEY "&q=" TRENT " HTTP/1.0");
         client.println("Host: " HOST);      
         client.println("Connection: close");
@@ -165,4 +166,5 @@ The data received will be displayed on the LCD screen and also sent thanks to th
 
 
 ### Acknowledgment
+![Immagine 2023-03-24 133434](https://user-images.githubusercontent.com/75731638/227526526-7ac3d743-ff2a-4ac1-8745-b8938a543c6c.png)
 ### Copyright
