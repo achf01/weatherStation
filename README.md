@@ -166,7 +166,11 @@ The data received will be displayed on the LCD screen and also sent thanks to th
 QUA???????????
 
 ### Acknowledgment
-Students: [Annachiara Fortuna](https://github.com/achf01) - [Giuseppe Ostacchini]() - [Erestina Vreto]()
+Students: [Annachiara Fortuna](https://github.com/achf01) - [Giuseppe Ostacchini](https://github.com/beppeosta) - [Erestina Vreto](https://github.com/eravreto)
+Project for the course "Embedded Software for the Internet of Things" 2022/2023 - [
+Kasim Sinan Yildirim](https://webapps.unitn.it/du/it/Persona/PER0212812/Didattica)
+
+
 <img src="https://user-images.githubusercontent.com/101217680/231458391-f247b1ba-2c5b-474d-ad5f-a40939d57d3d.png" width=30% height=30%>
 
 
