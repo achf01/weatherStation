@@ -138,16 +138,30 @@ void callback(char *topic, byte *payload, unsigned int length)
 ```
 
 ##### Weather API 
-
-// Annina divertiti
+The API used in this project can be found at [https://www.weatherapi.com](https://www.weatherapi.com).
+To use it, it is important to remember to set un the internet connection to enable the requests to the api.
 
 Remember to set up the following macros in the "api.h" file:
 1) ```MYSSID``` WiFi name
 2) ```PASS_WIFI``` WiFi password
 3) ```CONST_DELAY_API``` time to pass between a request sending and another without receiving new inputs (by default 30 minutes)
 
+The request to the api are performed by this part of the function "make_request()", that can be found in the library "api.h". These requests are done creating a proper GET HTTP request to the web server of the API.
+```if(client.connected()){
+        client.println("GET " PATH "?key=" APIKEY "&q=" TRENT " HTTP/1.0");
+        client.println("Host: " HOST);      
+        client.println("Connection: close");
+        client.println();
+        Serial.println("request made");
+        while(!client.available()){
+      //Serial.println("Waiting for client");
+    }```
+
+Is is important to consider that the data requested are given in the response of the HTTP request. For this reason the headers are skipped, the data are saved in a "DinamicJsonDocument" and then deserialized in order to return only the relevant information.
+The data received will be displayed on the LCD screen and also sent thanks to the MQTT server to the other ESP32 in order to move the wheels according to them.
+
 ### Other Material
 
 
-### Acknoledgment
+### Acknowledgment
 ### Copyright
