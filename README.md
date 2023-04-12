@@ -166,5 +166,5 @@ The data received will be displayed on the LCD screen and also sent thanks to th
 
 
 ### Acknowledgment
-![image](https://user-images.githubusercontent.com/101217680/231458391-f247b1ba-2c5b-474d-ad5f-a40939d57d3d.png)
+<img src="https://user-images.githubusercontent.com/101217680/231458391-f247b1ba-2c5b-474d-ad5f-a40939d57d3d.png" width=50% height=50%>
 ### Copyright
