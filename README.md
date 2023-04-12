@@ -167,6 +167,7 @@ QUA???????????
 
 ### Acknowledgment
 Students: [Annachiara Fortuna](https://github.com/achf01) - [Giuseppe Ostacchini](https://github.com/beppeosta) - [Erestina Vreto](https://github.com/eravreto)
+
 Project for the course "Embedded Software for the Internet of Things" 2022/2023 - [
 Kasim Sinan Yildirim](https://webapps.unitn.it/du/it/Persona/PER0212812/Didattica)
 
