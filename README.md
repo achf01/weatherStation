@@ -163,7 +163,8 @@ Is is important to consider that the data requested are given in the response of
 The data received will be displayed on the LCD screen and also sent thanks to the MQTT server to the other ESP32 in order to move the wheels according to them.
 
 ### Other Material
-QUA???????????
+WeatherStation Presentation
+WeatherStation Video-presentation
 
 ### Acknowledgment
 Students: [Annachiara Fortuna](https://github.com/achf01) - [Giuseppe Ostacchini](https://github.com/beppeosta) - [Erestina Vreto](https://github.com/eravreto)
