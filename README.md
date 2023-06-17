@@ -54,7 +54,20 @@ pio pkg install --library "bblanchon/ArduinoJson@^6.20.1"
 
 ### How to start
 #### Weather station
-MANCA TUTTA QUESTA PARTE 
+This part of the project controls the ESP responsabel for the rotation of the wheels and the correct illumination of the led. The information about what to display is given by the other ESP through a MQTT message.
+
+##### Pin setup
+To connect all the pins properly, a breadboard is needed, in particular to connect the signals of power and ground to the three devices connected (2 stepper motors, 1 led).
+ERA FAI TU QUESTA PARTE :(
+
+##### FSM
+Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. 
+
+##### EEPROM
+To memorize the state of the wheels in case of disconnection, we used the eeprom library to write the status value into memory, and read it when powering on. 
+
+##### LED
+The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code
 
 #### Display controller
 ##### Pin setup
