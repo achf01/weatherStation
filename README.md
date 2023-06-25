@@ -109,10 +109,9 @@ First to make sure that the display works set up the pins properly by:
 For receiving and sending information (respectively from PC and to the other ESP32) we decided to use a MQTT broker. In particular we decided to use [HiveMQ MQTT broker](https://www.hivemq.com/public-mqtt-broker/), however it should work even using others MQTT brokers.
 Remember to set up the following macros in the "MQTT.h" file:
 1) ```TOPIC_CITY``` name of the topic in the MQTT broker where you receive the city name from PC
-4) ```TOPIC_HOUR``` name of the topic in the MQTT broker where you send the actual time to the other ESP32
-5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
-6) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose) 
-7) ```CLIENT``` name of the connection on MQTTX
+2) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather and time to the other ESP32
+3) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose or it's possible to create a private one) 
+4) ```CLIENT``` name of the connection on MQTTX
 
 Now you have to set up the broker trough MQTTX. Open the desktop app, go to the first section in the slidebar on the left and click the botton "+"
 
