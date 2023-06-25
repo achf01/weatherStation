@@ -61,10 +61,23 @@ To connect all the pins properly, a breadboard is needed, in particular to conne
 ERA FAI TU QUESTA PARTE :(
 
 ##### FSM
-Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. This object is created with the data passed using the MQTT message after parsing.  
+Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. This object is created with the data passed using the MQTT message after parsing. The FSM gives the input and the direction of rotation of the wheels cousing the motion.
 
 ##### EEPROM
-To memorize the state of the wheels in case of disconnection, we used the eeprom library to write the status value into memory, and read it when powering on, in the setup phase. This library 
+To memorize the state of the wheels in case of disconnection, we used the eeprom library to write the status value into memory, and read it when powering on, in the setup phase. We save the state of the machine after every motion of the wheels, in order to be always updated in case of disconnection. This values are read during the setup, not in every iteration of the loop. 
+In the init_info function in rotcontrol.cpp we find the code to read the memory. We are reading two integers, one for each wheel, each one is 4 bytes long as specified in the addresses.
+```
+    EEPROM.begin(EEPROM_SIZE);
+    int state_up = EEPROM.read(0); // one per wheel
+    int state_down = EEPROM.read(4); // one per wheel
+```
+In the rot_control function in rotcontrol.cpp we find the code to write the state value of each wheel in memory. As said before the addresses are properly configured to contain integers. 
+```
+    EEPROM.write(0, *up_state);
+    EEPROM.commit();
+    EEPROM.write(4, *down_state);
+    EEPROM.commit();
+```
 
 ##### LED
 The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code
