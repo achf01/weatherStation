@@ -150,7 +150,7 @@ Remember to set up the following macros in the "api.h" file:
 3) ```CONST_DELAY_API``` time to pass between a request sending and another without receiving new inputs (by default 30 minutes)
 
 The request to the api are performed by this part of the function "make_request()", that can be found in the library "api.h". These requests are done creating a proper GET HTTP request to the web server of the API.
-```
+```c++
 if(client.connected()){
         client.println("GET " PATH "?key=" APIKEY "&q=" TRENT " HTTP/1.0");
         client.println("Host: " HOST);      
@@ -184,7 +184,7 @@ In the init_info function in rotcontrol.cpp we find the code to read the memory.
     int state_down = EEPROM.read(4); // one per wheel
 ```
 In the rot_control function in rotcontrol.cpp we find the code to write the state value of each wheel in memory. As said before the addresses are properly configured to contain integers. 
-```
+```c++
     EEPROM.write(0, *up_state);
     EEPROM.commit();
     EEPROM.write(4, *down_state);
@@ -193,7 +193,7 @@ In the rot_control function in rotcontrol.cpp we find the code to write the stat
 
 ##### LED
 The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code 48 triplets of numbers, representing RGB values. The time is passed in the control_led function and set the color of the led. The functions to set up and update the led color are in ledcontrol.cpp
-```
+```c++
 // set up led
     FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
     FastLED.setBrightness(BRIGHTNESS);
