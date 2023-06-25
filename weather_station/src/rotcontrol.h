@@ -1,7 +1,6 @@
 #ifndef __ROTCONTROL_H__
 #define __ROTCONTROL_H__
 
-#include "api.h"
 #include <step.h>
 
 typedef enum{SUN, RAIN, SNOW}down;

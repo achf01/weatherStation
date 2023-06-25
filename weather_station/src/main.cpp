@@ -5,7 +5,6 @@
 #include <HTTPClient.h>
 #include <Stepper.h>
 #include <PubSubClient.h>
-#include "api.h"
 #include "step.h"
 #include "ledcrl.h"
 #include "rotcontrol.h"
@@ -60,7 +59,7 @@ void set_weather(char *weather)
 
   // Define if clear, storm or cloud
 
-  if ((strstr(weather, "clear") != NULL) || (strstr(weather, "plain") != NULL) || strstr(weather, "sunny") != NULL || strstr(weather, "overcast") != NULL)
+  if ((strstr(weather, "clear") != NULL) || (strstr(weather, "plain") != NULL) || strstr(weather, "sunny") != NULL)
   {
     info.clear = true;
   }

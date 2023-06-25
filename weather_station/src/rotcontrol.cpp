@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "step.h"
 #include "rotcontrol.h"
-#include "api.h"
 #include <EEPROM.h>
 
 #define EEPROM_SIZE sizeof(int)*2

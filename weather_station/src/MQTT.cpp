@@ -4,7 +4,6 @@
 #include <PubSubClient.h>
 #include <string.h>
 #include "MQTT.h"
-#include "api.h"
 #include "rotcontrol.h"
 #include "ledcrl.h"
 
@@ -30,14 +29,17 @@ void callback(char *topic, byte *payload, unsigned int length)
         parseTimeAndWeather(string, hour, minutes);
         lowerCaseString(string);
         set_weather(string);
-        int int_hour=atoi(hour)*2;
-        int int_min=atoi(minutes);
-        if(int_min<30){
-            int_min=0;
-        }else{
-            int_min=1;
+        int int_hour = atoi(hour) * 2;
+        int int_min = atoi(minutes);
+        if (int_min < 30)
+        {
+            int_min = 0;
         }
-        control_led(int_hour+int_min);
+        else
+        {
+            int_min = 1;
+        }
+        control_led(int_hour + int_min);
     }
 }
 
@@ -63,6 +65,20 @@ void MQTT_loop()
 {
     client.loop();
     Serial.println("controllo!");
+}
+
+void wifiConnection_(const char *ssid, const char *pass_wifi)
+{
+    WiFi.begin(ssid, pass_wifi);
+    Serial.print("Connecting to WiFi");
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        Serial.print(".");
+        delay(500);
+    }
+    // Serial.println("\nConnected to the WiFi network");
+    // Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
 }
 
 void lowerCaseString(char *string)
