@@ -1,0 +1,41 @@
+#include <TFT_eSPI.h> // Graphics and font library for ILI9341 driver chip
+#include <SPI.h>
+
+TFT_eSPI tft = TFT_eSPI();  // Invoke library
+int verso; //Può essere un numero tra 0 e 3
+
+Function
+///////////////////////////////////////////////////////////////////////////////////
+
+void setup(void) {
+    tft.init();
+
+    // setta il verso dello schermo. 
+    // 0: Dall'alto (pin della scheda sd) al basso (pin generali e touch)
+    // 1: Da sinistra (pin della scheda sd) a destra (pin generali e touch)
+    // 2: Dall'alto (pin generali e touch) al basso (pin della scheda sd)
+    // 3: Da sinistra (pin generali e touch) a destra (pin della scheda sd)
+    // 4-7: I precedenti ma specchiato
+    tft.setRotation(verso); 
+}
+
+void loop(){
+// Fill screen with a color
+tft.fillScreen(TFT_color)
+
+// Set cursor in a certain position (x,y) and select font "fontNumber"
+tft.setCursor(x, y, fontNumber);
+
+// Set the font color to be "TFT_color" with a "TFT_color2" background
+tft.setTextColor(TFT_color, TFT_color2);
+
+// Set text size multiplier to "n"
+tft.setSize(n);
+
+// Plot string "string" on screen and move cursor at the start (x=0) of the next line automatically
+tft.println(string);
+
+// Set the font color to be "TFT_color" with no background
+tft.setTextColor(TFT_color);
+
+}
