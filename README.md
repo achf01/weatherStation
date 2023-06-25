@@ -169,8 +169,9 @@ The data received will be displayed on the LCD screen and also sent thanks to th
 This part of the project controls the ESP responsable for the rotation of the wheels and the correct illumination of the led. The information about what to display is given by the other ESP through a MQTT message, that is properly parsed in order to have the right information. The info passed consist of time and weather.
 
 ##### Pin setup
-To connect all the pins properly, a breadboard is needed, in particular to connect the signals of power and ground to the three devices connected (2 stepper motors, 1 led).
-ERA FAI TU QUESTA PARTE :(
+For the ESP32 to interface with the stepper motor, we used a ULN2003 motor driver for each moter. The driver comes with a connector that simplifies the connection with the motor itself, 4 input pins that control the coils that make the stepper motor move and two pins to connect power supply and ground. The six pins in the driver need to be wired to the ESP32,  the file weather_station/src/step.h in the github folder indicates how the pins are connected. However, since we had to power the LED and no pins left (ESP32 has only two VCC and GND pins) it was necessary to use a breadboard. In addition to GND and VCC pins, the LED needs an additional pin which controls color. For this purpose, weather_station/src/ledcrl.cpp indicates the pin used for LED control.
+<img width="962" alt="pin_motors_led" src="https://github.com/achf01/weatherStation/assets/109226936/8bae1cf5-d56a-4024-811a-b1138771d2f6">
+
 
 ##### FSM
 Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. This object is created with the data passed using the MQTT message after parsing. The FSM gives the input and the direction of rotation of the wheels cousing the motion.
