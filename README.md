@@ -22,6 +22,12 @@ To interface ESP32 with the stepper motor, we use the ULN2003 motor driver that 
 To use the display we used an Arduino built-in library called ["TFT_eSPI.h"](https://github.com/Bodmer/TFT_eSPI), which provide functions to draw and write on the display, with the possibility to set the colors. The ILI9341 display we choose is 2.8" with a resolution of 240x320 pixels.
 The display communicate with the ESP32 through SPI protocol, 5 input pins are connected to 5 General Purpose I/O pins on the board, and three power supply pins connected to the Vin, 3v3 and GND of the ESP32. 
 
+![image](https://github.com/achf01/weatherStation/assets/75731638/6e3ea12b-25ef-42e3-8651-0d3e4e0f4998)
+
+```
+IMPORTANT: Led pin should be connected to a power supply pin instead of D32
+```
+
 ###### RGB LED WS2812
 All the configuration of the led can be found in the folder src in a custom library called "ledcrl.h". There, we defined a function to setup the led and one to choose the right color according with the daytime. We realized that function by defining a matrix with a predefined number of (r,g,b) values, based on the time (both hours and minutes are required), the right color is selected and displayed by the led. 
 It is possbile to change the pin configuration chosen by default, but it is important to connect one pin with the ground, one with Vin and one with a MOSI pin (deafult 12)
@@ -103,10 +109,9 @@ First to make sure that the display works set up the pins properly by:
 For receiving and sending information (respectively from PC and to the other ESP32) we decided to use a MQTT broker. In particular we decided to use [HiveMQ MQTT broker](https://www.hivemq.com/public-mqtt-broker/), however it should work even using others MQTT brokers.
 Remember to set up the following macros in the "MQTT.h" file:
 1) ```TOPIC_CITY``` name of the topic in the MQTT broker where you receive the city name from PC
-4) ```TOPIC_HOUR``` name of the topic in the MQTT broker where you send the actual time to the other ESP32
-5) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather to the other ESP32
-6) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose) 
-7) ```CLIENT``` name of the connection on MQTTX
+2) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather and time to the other ESP32
+3) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose or it's possible to create a private one) 
+4) ```CLIENT``` name of the connection on MQTTX
 
 Now you have to set up the broker trough MQTTX. Open the desktop app, go to the first section in the slidebar on the left and click the botton "+"
 
