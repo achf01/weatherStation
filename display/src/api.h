@@ -11,8 +11,8 @@
 #define HOST "api.weatherapi.com"
 #define PATH "/v1/forecast.json"
 #define APIKEY "0526d8ca2a784a2ca17131537222912"
-#define MYSSID "Usta"       //wifi name
-#define PASS_WIFI "Avvoltoio"        //wifi password
+#define MYSSID "XXXXXXXXXX"       //wifi name
+#define PASS_WIFI "XXXXXXXXXX"        //wifi password
 
 #define CONST_DELAY_API 600000 * 30 // from ms -> s, 30 min
 
