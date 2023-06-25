@@ -25,7 +25,7 @@ The display communicate with the ESP32 through SPI protocol, 5 input pins are co
 ![image](https://github.com/achf01/weatherStation/assets/75731638/6e3ea12b-25ef-42e3-8651-0d3e4e0f4998)
 
 ```
-IMPORTANT: Led pin should be connected to a power supply pin instead of D32
+IMPORTANT: LED pin should be connected to a power supply pin instead of D32
 ```
 
 ###### RGB LED WS2812
