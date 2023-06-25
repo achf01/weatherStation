@@ -80,7 +80,15 @@ In the rot_control function in rotcontrol.cpp we find the code to write the stat
 ```
 
 ##### LED
-The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code
+The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code 48 triplets of numbers, representing RGB values. The time is passed in the control_led function and set the color of the led. The functions to set up and update the led color are in ledcontrol.cpp
+```
+// set up led
+    FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setBrightness(BRIGHTNESS);
+// configuration of the led
+    leds[0].setRGB(lister[iter%D_NUM_COLOR][0], lister[iter%D_NUM_COLOR][1], lister[iter%D_NUM_COLOR][2]);
+    FastLED.show();
+```
 
 #### Display controller
 ##### Pin setup
