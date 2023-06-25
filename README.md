@@ -201,6 +201,10 @@ if(client.connected()){
 Is is important to consider that the data requested are given in the response of the HTTP request. For this reason the headers are skipped, the data are saved in a "DinamicJsonDocument" and then deserialized in order to return only the relevant information.
 The data received will be displayed on the LCD screen and also sent thanks to the MQTT server to the other ESP32 in order to move the wheels according to them.
 
+
+### Testing
+In the testing directory are present the .ino files that can be flashed and run singularly in order to test single components. We used it in order to be sure that single components works properly.
+
 ### Other Material
 WeatherStation Presentation
 WeatherStation Video-presentation
