@@ -56,47 +56,11 @@ pio pkg install --library "knolleary/PubSubClient@^2.8"
 pio pkg install --library "bblanchon/ArduinoJson@^6.20.1" 
 ```
 
-
-
 ### How to start
-#### Weather station
-This part of the project controls the ESP responsable for the rotation of the wheels and the correct illumination of the led. The information about what to display is given by the other ESP through a MQTT message, that is properly parsed in order to have the right information. The info passed consist of time and weather.
-
-##### Pin setup
-To connect all the pins properly, a breadboard is needed, in particular to connect the signals of power and ground to the three devices connected (2 stepper motors, 1 led).
-ERA FAI TU QUESTA PARTE :(
-
-##### FSM
-Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. This object is created with the data passed using the MQTT message after parsing. The FSM gives the input and the direction of rotation of the wheels cousing the motion.
-
-##### EEPROM
-To memorize the state of the wheels in case of disconnection, we used the eeprom library to write the status value into memory, and read it when powering on, in the setup phase. We save the state of the machine after every motion of the wheels, in order to be always updated in case of disconnection. This values are read during the setup, not in every iteration of the loop. 
-In the init_info function in rotcontrol.cpp we find the code to read the memory. We are reading two integers, one for each wheel, each one is 4 bytes long as specified in the addresses.
-```
-    EEPROM.begin(EEPROM_SIZE);
-    int state_up = EEPROM.read(0); // one per wheel
-    int state_down = EEPROM.read(4); // one per wheel
-```
-In the rot_control function in rotcontrol.cpp we find the code to write the state value of each wheel in memory. As said before the addresses are properly configured to contain integers. 
-```
-    EEPROM.write(0, *up_state);
-    EEPROM.commit();
-    EEPROM.write(4, *down_state);
-    EEPROM.commit();
-```
-
-##### LED
-The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code 48 triplets of numbers, representing RGB values. The time is passed in the control_led function and set the color of the led. The functions to set up and update the led color are in ledcontrol.cpp
-```
-// set up led
-    FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
-    FastLED.setBrightness(BRIGHTNESS);
-// configuration of the led
-    leds[0].setRGB(lister[iter%D_NUM_COLOR][0], lister[iter%D_NUM_COLOR][1], lister[iter%D_NUM_COLOR][2]);
-    FastLED.show();
-```
 
 #### Display controller
+This part of the project handles the MQTT message received from PC to esp32, show the informations about weather on display and send the information to the other esp32.
+
 ##### Pin setup
 First to make sure that the display works set up the pins properly by:
 1) Display_Controller -> .pio -> libdeps -> TFT_eSPI -> User_Setup.h
@@ -111,7 +75,7 @@ Remember to set up the following macros in the "MQTT.h" file:
 1) ```TOPIC_CITY``` name of the topic in the MQTT broker where you receive the city name from PC
 2) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you send the actual weather and time to the other ESP32
 3) ```SERVER``` name of the broker (can be found easily on the official site of the MQTT broker you choose or it's possible to create a private one) 
-4) ```CLIENT``` name of the connection on MQTTX
+4) ```CLIENT``` name of the connection to receive message on MQTTX
 
 Now you have to set up the broker trough MQTTX. Open the desktop app, go to the first section in the slidebar on the left and click the botton "+"
 
@@ -201,6 +165,88 @@ if(client.connected()){
 Is is important to consider that the data requested are given in the response of the HTTP request. For this reason the headers are skipped, the data are saved in a "DinamicJsonDocument" and then deserialized in order to return only the relevant information.
 The data received will be displayed on the LCD screen and also sent thanks to the MQTT server to the other ESP32 in order to move the wheels according to them.
 
+#### Weather station
+This part of the project controls the ESP responsable for the rotation of the wheels and the correct illumination of the led. The information about what to display is given by the other ESP through a MQTT message, that is properly parsed in order to have the right information. The info passed consist of time and weather.
+
+##### Pin setup
+To connect all the pins properly, a breadboard is needed, in particular to connect the signals of power and ground to the three devices connected (2 stepper motors, 1 led).
+ERA FAI TU QUESTA PARTE :(
+
+##### FSM
+Once received the information, they are elaborated thanks to a Finite State Machine that takes as input a structure composed of boolean values describing the weather taken from the open weather api. This object is created with the data passed using the MQTT message after parsing. The FSM gives the input and the direction of rotation of the wheels cousing the motion.
+
+##### EEPROM
+To memorize the state of the wheels in case of disconnection, we used the eeprom library to write the status value into memory, and read it when powering on, in the setup phase. We save the state of the machine after every motion of the wheels, in order to be always updated in case of disconnection. This values are read during the setup, not in every iteration of the loop. 
+In the init_info function in rotcontrol.cpp we find the code to read the memory. We are reading two integers, one for each wheel, each one is 4 bytes long as specified in the addresses.
+```
+    EEPROM.begin(EEPROM_SIZE);
+    int state_up = EEPROM.read(0); // one per wheel
+    int state_down = EEPROM.read(4); // one per wheel
+```
+In the rot_control function in rotcontrol.cpp we find the code to write the state value of each wheel in memory. As said before the addresses are properly configured to contain integers. 
+```
+    EEPROM.write(0, *up_state);
+    EEPROM.commit();
+    EEPROM.write(4, *down_state);
+    EEPROM.commit();
+```
+
+##### LED
+The led is controlled thanks to the time returned by the MQTT message. To create the sliding of colors, we specified in the code 48 triplets of numbers, representing RGB values. The time is passed in the control_led function and set the color of the led. The functions to set up and update the led color are in ledcontrol.cpp
+```
+// set up led
+    FastLED.addLeds<WS2812, DATA_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setBrightness(BRIGHTNESS);
+// configuration of the led
+    leds[0].setRGB(lister[iter%D_NUM_COLOR][0], lister[iter%D_NUM_COLOR][1], lister[iter%D_NUM_COLOR][2]);
+    FastLED.show();
+```
+##### MQTT
+For receiving information (from the other ESP32) we decided to use a MQTT broker. In particular we decided to use [HiveMQ MQTT broker](https://www.hivemq.com/public-mqtt-broker/), however it should work even using others MQTT brokers.
+Remember to set up the following macros in the "MQTT.h" file:
+1) ```TOPIC_WEATHER``` name of the topic in the MQTT broker where you receive the actual weather and time from the other ESP32
+2) ```SERVER``` name of the broker (see section MQTT of Display Controller above) 
+3) ```CLIENT``` name of the connection to send message on MQTTX
+4) ```MYSSID``` WiFi name
+5) ```PASS_WIFI``` WiFi password
+
+The setup on MQTTX is identical to the one mentioned above
+
+It's the handler of MQTT message, every time a message in the topic ```TOPIC_WEATHER``` is published, the ```callback``` function will save the message (containing the actual weather and hour), it will parse the message and call the ```control_led``` function
+```c++
+void callback(char *topic, byte *payload, unsigned int length)
+{
+    Serial.println("MQTT message received");
+    if (strcmp(topic, TOPIC_WEATHER) == 0)
+    {
+        char string[length + 1];
+        char hour[2];
+        char minutes[2];
+        // handle message arrived
+        for (int i = 0; i < length; i++)
+        {
+            // converto il payload da byte a char e lo salvo su string
+            string[i] = (char)payload[i];
+        }
+        string[length] = '\0';
+        Serial.println(string);
+        parseTimeAndWeather(string, hour, minutes);
+        lowerCaseString(string);
+        set_weather(string);
+        int int_hour = atoi(hour) * 2;
+        int int_min = atoi(minutes);
+        if (int_min < 30)
+        {
+            int_min = 0;
+        }
+        else
+        {
+            int_min = 1;
+        }
+        control_led(int_hour + int_min);
+    }
+}
+```
 
 ### Testing
 In the testing directory are present the .ino files that can be flashed and run singularly in order to test single components. We used it in order to be sure that single components works properly.
