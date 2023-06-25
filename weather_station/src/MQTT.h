@@ -9,8 +9,8 @@
 #define TOPIC_WEATHER "IoT_Meteo"
 #define SERVER "broker.hivemq.com"
 #define CLIENT "esp32-WeatherApi"
-#define MYSSID "Honor View 10 Lite"
-#define PASS_WIFI "ciao1111q"
+#define MYSSID "XXXXXXXXXX"
+#define PASS_WIFI "XXXXXXXXXX"
 #define CONST_DELAY_API 1000*3 //ms
 
 void callback(char *topic, byte *payload, unsigned int length);
