@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "display",
+			"path": "../../display"
+		},
+		{
+			"name": "weather_station",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

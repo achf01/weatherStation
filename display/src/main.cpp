@@ -59,7 +59,7 @@ void loop()
       Serial.println("Sending MQTT message");
       strcat(message, ".");
       strcat(message, weather.weather);
-      MQTT_publish(TOPIC_WEATHER, message);      //Manda un messaggio con la seguente struttura: hh:mm.weather
+      MQTT_publish(TOPIC_WEATHER, message); // Manda un messaggio con la seguente struttura: hh:mm.weather
       Serial.println("MQTT message sent");
     }
   }
@@ -86,4 +86,26 @@ void setCity(char *string)
 void setReqBool(boolean req)
 {
   sendReq = req;
+}
+
+void lowerCaseString(char *string)
+{
+    for (int i = 0; i < strlen(string); i++)
+        if (string[i] >= 'A' && string[i] <= 'Z')
+            string[i] += 32;
+    Serial.println(string);
+}
+
+boolean verifyCity()
+{
+  char temp1[strlen(citta)];
+  char temp2[strlen(weather.city)];
+  strcpy(temp1,citta);
+  strcpy(temp2, weather.city);
+  lowerCaseString(temp1);
+  lowerCaseString(temp2);
+
+  if (strcmp(temp1, temp2) != 0)
+    return true;
+  return false;
 }

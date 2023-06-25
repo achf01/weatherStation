@@ -106,4 +106,10 @@ void drawWeather(weather_info weather, TFT_eSPI tft)
     tft.setCursor(20, tft.getCursorY(), 2);
     sprintf(string, "Wind: %d (km/h)", weather.wind);
     tft.println(string);
+    if(verifyCity())
+    {
+        tft.setTextColor(TFT_RED);
+        tft.setCursor(20, tft.getCursorY()+20, 1);
+        tft.println("ATTENTION! The city researched you wanted isn't available, but we found somewhere near");
+    }
 }

@@ -31,6 +31,8 @@ void buildTimeString(TFT_eSPI tft);
 */
 void reset_time(const char* weather);
 
+boolean verifyCity();
+
 /*
     Function to convert time from string to int
 */
