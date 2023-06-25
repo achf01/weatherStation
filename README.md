@@ -31,8 +31,8 @@ In the folder svg_files you can find all the models of the structure we created 
 
 ##### Software Requirements (DA CONTROLLARE)
 To devolop the project we have decided to use [Platform.IO](https://platformio.org/), an extension of Visual Studio Code that has all the functionality of Arduino IDE and an easier interface, in particular for the creation of structured projects with many files. Besides this, it is possible to obtain the same result in Arduino IDE, manually manging all the project structure.
-In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen reequires many pins and memory to work properly. 
-To handle information exchange between the two ESP32 and the PC, we choose to use MQTT protocol, for sending information from PC to ESP32 (and to monitor that messages are exchanging correctly) we used the [MQTTX interface](https://mqttx.app/docs/downloading-and-installation).
+In the repository there are two different projects, one for each ESP32. This choice has been made because the LCD screen requires many pins and memory to work properly. 
+To handle information exchange between the two ESP32s and the PC, we choose to use MQTT protocol, for sending information from PC to ESP32 (and to monitor that messages are exchanging correctly) we used the [MQTTX interface](https://mqttx.app/docs/downloading-and-installation).
 Since we used many external libraries, it is possible to install it thanks to the Platform.IO manager using the following commands in the platform control cli 
 
 Weather station
