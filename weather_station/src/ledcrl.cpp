@@ -50,5 +50,5 @@ void control_led(int iter){
         leds[0].setRGB(lister[(D_NUM_COLOR-1)-iter%D_NUM_COLOR][0], lister[(D_NUM_COLOR-1)-iter%D_NUM_COLOR][1], lister[(D_NUM_COLOR-1)-iter%D_NUM_COLOR][2]); 
     }
     FastLED.show();
-    Serial.println("led updated");
+    // Serial.println("led updated");
 }
