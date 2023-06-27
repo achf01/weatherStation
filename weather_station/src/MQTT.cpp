@@ -64,7 +64,7 @@ void MQTT_inizialization()
 void MQTT_loop()
 {
     client.loop();
-    Serial.println("controllo!");
+    // Serial.println("controllo!");
 }
 
 void wifiConnection_(const char *ssid, const char *pass_wifi)
@@ -78,7 +78,7 @@ void wifiConnection_(const char *ssid, const char *pass_wifi)
     }
     // Serial.println("\nConnected to the WiFi network");
     // Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
+    // Serial.println(WiFi.localIP());
 }
 
 void lowerCaseString(char *string)
