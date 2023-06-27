@@ -254,7 +254,7 @@ In the testing directory are present the .ino files that can be flashed and run 
 
 ### Other Material
 
-[WeatherStation Presentation](https://github.com/achf01/weatherStation/files/11878752/IoT-presentation.pptx) -
+[WeatherStation Presentation](https://github.com/achf01/weatherStation/files/11879602/IoT-presentation.pptx) -
 [WeatherStation Video-presentation](https://youtu.be/VUxKbhNOfds)
 
 ### Acknowledgment
