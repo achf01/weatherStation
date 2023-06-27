@@ -253,8 +253,9 @@ void callback(char *topic, byte *payload, unsigned int length)
 In the testing directory are present the .ino files that can be flashed and run singularly in order to test single components. We used it in order to be sure that single components works properly.
 
 ### Other Material
-WeatherStation Presentation
-WeatherStation Video-presentation
+
+[WeatherStation Presentation](https://github.com/achf01/weatherStation/files/11878752/IoT-presentation.pptx) -
+[WeatherStation Video-presentation](https://youtu.be/VUxKbhNOfds)
 
 ### Acknowledgment
 Students: [Annachiara Fortuna](https://github.com/achf01) - [Giuseppe Ostacchini](https://github.com/beppeosta) - [Erestina Vreto](https://github.com/eravreto)
